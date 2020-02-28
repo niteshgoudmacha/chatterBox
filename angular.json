@@ -123,6 +123,6 @@
   },
   "defaultProject": "chatterBox",
   "cli": {
-    "analytics": "2f2f3790-a943-4848-a7ce-7efec371d6a1"
+    "analytics": false
   }
 }
