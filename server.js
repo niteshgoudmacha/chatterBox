@@ -1,10 +1,15 @@
 const express = require("express");
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const http = require('http');
+const socketio = require('socket.io');
 
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+
 const cors = require("cors");
 const authRoute = require("./routes/authRoute");
 const keys = require("./config/keys");
@@ -14,6 +19,15 @@ const corsOptions = {
   methods: ["GET", "POST"],
   optionsSuccessStatus: 200
 };
+
+io.on('connection', (socket) => {
+  console.log('new connection');
+
+  socket.on('new-message', (message) => {
+    console.log(message);
+    io.emit(message);
+  });
+})
 
 mongoose.connect(
   keys.mongoURI,
@@ -34,4 +48,4 @@ app.get('/*', (req, res) => res.sendFile(path.join(__dirname, 'dist', 'chatterBo
 
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, () => console.log(`Speech app listening on port ${PORT}!`));
+server.listen(PORT, () => console.log(`Chat app listening on port ${PORT}!`));

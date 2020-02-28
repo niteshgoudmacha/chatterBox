@@ -20,9 +20,9 @@ export class AuthServiceService {
   });
   }
 
-  getUsername() {
+  getUser() {
     console.log('storage = ', !localStorage.getItem('token'));
-    return this._http.get(this.url + '/api/user/username', {
+    return this._http.get(this.url + '/api/user/user', {
       observe: 'body',
       params: new HttpParams().append('token', localStorage.getItem('token'))
     });

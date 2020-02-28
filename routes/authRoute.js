@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
         if(user.isValid(user.password, req.body.password)) {
             //generate token
             console.log('true--');
-            const token = jwt.sign({username: user.username}, 'secret', { expiresIn: '3h'});
+            const token = jwt.sign({username: user.username, email: user.email}, 'secret', { expiresIn: '3h'});
             return res.status(200).json(token);
         }
         else {
@@ -46,8 +46,21 @@ router.post('/login', async (req, res) => {
     
 });
 
-router.get('/username', verifyToken, (req, res, next) => {
-    return res.status(200).json(decodedToken.username);
+router.get('/user', verifyToken, async (req, res) => {
+    try {
+        
+        const user = await User.findOne({username: decodedToken.username}, { password: 0 , _id: 0 });
+        console.log('user1 = ', user);
+        if(!user) {
+            return res.status(404).json({message: "User is not registered"});
+        }
+        console.log('user = ', user);
+        return res.status(200).json(user);
+    } catch(error) {
+        console.log('error', error);
+        return res.status(501).json({ message: "Internal Server Error"});
+    }
+
 });
 
 var decodedToken = '';

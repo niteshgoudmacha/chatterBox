@@ -1,0 +1,15 @@
+
+<div *ngIf="userProfile" class="jumbotron ">
+    <div class="card mx-auto" style="width: 50%;">
+        <div class="card-body">
+        <h5 class="card-title">UserName: {{ userProfile.username }}</h5>
+        <h5 class="card-title">Email: {{ userProfile.email }}</h5>
+        <h5 class="card-title">Joined on: {{ userProfile.createdDate }}</h5>
+        
+        
+        </div>
+    </div>
+</div>
+<div *ngIf="!userProfile" class="jumbotron ">
+    <h6>No Profile Found</h6>
+</div>

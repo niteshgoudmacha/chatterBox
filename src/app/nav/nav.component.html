@@ -20,7 +20,8 @@
         <ul class="navbar-nav ml-auto">
             <a class="btn btn-primary mr-2" href="/login" *ngIf="!isAuth()">Login</a>
             <a class="btn btn-primary" href="/register" *ngIf="!isAuth()">Register</a>
-            <a class="btn btn-primary" href="" *ngIf="isAuth()" (click)="logout()">Logout</a>
+            <a class="btn btn-primary mr-2 " href="" *ngIf="isAuth()" (click)="logout()">Logout</a>
+            <a class="btn btn-primary" href="/profile" *ngIf="isAuth()">Profile</a>
         </ul>
     </div>
 </nav>
