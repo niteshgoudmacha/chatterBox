@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "chatterBox": {
@@ -119,6 +119,14 @@
           }
         }
       }
-    }},
-  "defaultProject": "chatterBox"
+    }
+  },
+  "defaultProject": "chatterBox",
+  "cli": {
+<<<<<<< HEAD
+    "analytics": "64c929c8-9e07-4e74-b15f-51d92bd5c7c5"
+=======
+    "analytics": false
+>>>>>>> a704f55c47a45629959949c7617883100e93290c
+  }
 }
