@@ -1,0 +1,29 @@
+<!-- <app-nav></app-nav> -->
+<div class="container">
+    <div class="card bg-secondary" style="width: 90%; padding: 10%; margin: 10%;">
+        <h2 class="card-title">Login</h2>
+        <form style="width: 100%;" [formGroup]="loginForm">
+            <div class="form-group">
+                <label>Email address</label>
+                <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <small *ngIf="!isValid('email')"  class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <small *ngIf="isValid('email')">
+                    Email Not Valid
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" formControlName="password"  placeholder="Password">
+                <small *ngIf="isValid('password')">
+                    Invalid Password
+                </small>
+            </div>
+            
+            <button type="submit" class="btn btn-primary m-2" [disabled] = "!formValid()" (click)="login()">Login</button>
+            <button type="submit" class="btn btn-primary" (click)="moveToRegister()">Register</button>
+            <div style="text-align: center;">
+                {{successMessage}}
+            </div>
+        </form>
+    </div>
+</div>
