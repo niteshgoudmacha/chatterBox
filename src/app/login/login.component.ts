@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthServiceService } from '../auth-service.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   successMessage: String;
   constructor(private authService: AuthServiceService,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute) { 
+    private _activatedRoute: ActivatedRoute,
+    @Inject(DOCUMENT) private document: Document) { 
     this.loginForm = new FormGroup({
       email: new FormControl(null, Validators.email),
       password: new FormControl(null, Validators.required)
@@ -43,7 +45,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', data.toString());
         this.successMessage = 'Registered Successfully';
         console.log("success");
-        this._router.navigate(['../home'], {relativeTo: this._activatedRoute});
+        // this._router.navigate(['www.google.com'], {relativeTo: this._activatedRoute});
+        this.document.location.href = 'https://gcroom.herokuapp.com';
       },
       (err) => {
         console.log(err.error.message);
