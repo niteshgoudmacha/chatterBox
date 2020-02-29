@@ -6,7 +6,8 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 })
 
 export class AuthServiceService {
-  url = 'http://localhost:3000';
+  url = 'https://gcrooom.herokuapp.com/';
+  //'http://localhost:3000';
   constructor(private _http: HttpClient) { }
   submitRegister(body: any) {
     return this._http.post(this.url + '/api/user/register', body, {
