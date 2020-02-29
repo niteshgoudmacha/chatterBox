@@ -78,4 +78,15 @@ function verifyToken(req, res, next) {
     });
 }
 
+router.post('/logout', verifyToken, async (req, res) => {
+    console.log(req.body);
+    try {
+        res.status(200).redirect('https://gcroooms.herokuapp.com/logout');
+    } catch(error) {
+        console.log('error', error);
+        return res.status(501).json({ message: "Internal Server Error"});
+    }
+    
+});
+
 module.exports = router;
